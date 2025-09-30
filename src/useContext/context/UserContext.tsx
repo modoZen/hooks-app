@@ -49,7 +49,9 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const userId = localStorage.getItem("userId");
     if (userId) {
       handleLogin(+userId);
+      return;
     }
+    handleLogout();
   }, []);
 
   return (
