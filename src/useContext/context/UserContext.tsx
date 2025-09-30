@@ -1,5 +1,6 @@
 import {
   createContext,
+  useEffect,
   useState,
   type FC,
   type PropsWithChildren,
@@ -33,14 +34,23 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
     }
     setUser(user);
     setAuthStatus("authenticated");
+    localStorage.setItem("userId", userId.toString());
     return true;
   };
 
   const handleLogout = () => {
     setUser(null);
     setAuthStatus("not-authenticated");
+    localStorage.removeItem("userId");
     console.log("logout");
   };
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      handleLogin(+userId);
+    }
+  }, []);
 
   return (
     <UserContext
