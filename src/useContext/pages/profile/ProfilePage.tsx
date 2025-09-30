@@ -10,7 +10,9 @@ export const ProfilePage = () => {
       <h1>Perfil del usuario</h1>
       <hr />
 
-      <pre className="my-4">{JSON.stringify(user, null, 2)}</pre>
+      <pre className="my-4 w-[50%] overflow-x-scroll">
+        {JSON.stringify(user, null, 2)}
+      </pre>
 
       <Button variant={"destructive"}>Salir</Button>
     </div>
